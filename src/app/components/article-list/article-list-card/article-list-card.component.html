@@ -1,13 +1,16 @@
-<div class="container">
-    <div class="row my-4 border rounded" [routerLink]="['/view', article.id]" style="cursor: pointer;">
-        <div class="col card-img">
-            <img src="{{article.image}}" alt="article">
+<div class="container" [routerLink]="['/view', article.id]" style="cursor: pointer;">
+    <div class="row my-4 border-0 shadow p-3 rounded-2">
+        <div class="col-sm-2 col-4">
+            <div class="card-img mb-sm-0 mb-2">
+                <img src="{{article.image}}" alt="article" class="rounded">
+            </div>
         </div>
-        <div class="col">
+        
+        <div class="col-sm-10 col-8">
             <div class="card-body">
-                <p>{{article.title}}</p>
-                <p>{{article.content | truncate}}</p>
-                <p>{{article.created_at | date: 'yyyy-MM-dd'}}</p>
+                <h5>{{ article.title }}</h5>
+                <p class="article-content">{{ article.content | truncate }}</p>
+                <p class="article-date">{{ article.created_at | date: 'yyyy-MM-dd' }}</p>
             </div>
         </div>
     </div>
