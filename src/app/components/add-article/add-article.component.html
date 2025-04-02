@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Add Article</h2>
+
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control"
+                type="text"
+                formControlName="title"
+                [ngClass]="{'is-invalid': articleForm.get('title')?.errors && articleForm.get('title')?.touched && (articleForm.get('title')?.invalid || articleForm.get('title')?.dirty) }"            />
+            <div *ngIf="articleForm.get('title')?.touched" class="ml-2 invalid-feedback">
+                <div *ngIf="articleForm.get('title')?.hasError('required')">Title Is required</div>
+                <div *ngIf="articleForm.get('title')?.hasError('minlength')">Minimum 3 characters required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea 
+            class="form-control"
+                type="text"
+                formControlName="content"
+                [ngClass]="{'is-invalid': articleForm.get('content')?.errors && articleForm.get('content')?.touched && (articleForm.get('content')?.invalid || articleForm.get('content')?.dirty) }"
+            ></textarea>
+            <div *ngIf="articleForm.get('content')?.touched" class="ml-2 invalid-feedback">
+                <div *ngIf="articleForm.get('content')?.hasError('required')">Content Is required</div>
+                <div *ngIf="articleForm.get('content')?.hasError('minlength')">Minimum 10 characters required</div>
+            </div>
+        </div>
+
+        <button type="submit" class="mt-4 btn btn-primary">Save</button>
+    </form>
+</div>

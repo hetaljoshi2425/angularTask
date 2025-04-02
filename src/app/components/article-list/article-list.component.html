@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Articles List</h1>
+        <button type="button" class="btn btn-primary" routerLink="/add">Add New Article</button>
+    </div>
+
+    @for(article of (articlesList$ | async);track article.id){
+        <app-article-list-card [article]="article"></app-article-list-card>
+    }
+</div>
