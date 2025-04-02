@@ -1,7 +1,7 @@
-<div class="container" (click)="gotoView(article.id)">
-    <div class="row my-4 border rounded">
+<div class="container">
+    <div class="row my-4 border rounded" [routerLink]="['/view', article.id]" style="cursor: pointer;">
         <div class="col card-img">
-            <img src="https://picsum.photos/100" alt="article">
+            <img src="{{article.image}}" alt="article">
         </div>
         <div class="col">
             <div class="card-body">

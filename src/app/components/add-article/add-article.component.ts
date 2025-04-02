@@ -6,39 +6,90 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-article',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './add-article.component.html',
   styleUrl: './add-article.component.scss'
 })
 export class AddArticleComponent implements OnInit {
 
   articleForm!: FormGroup;
+  selectedImage: File | null = null;
 
   constructor(
-    private fb : FormBuilder,
+    private fb: FormBuilder,
     public articleService: ArticleService,
-  public router: Router) {
+    public router: Router
+  ) {
 
   }
 
   ngOnInit(): void {
     this.articleForm = this.fb.group({
-      title: ['',[Validators.required,Validators.minLength(3)]],
-      content: ['',[Validators.required,Validators.minLength(10)]],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      content: ['', [Validators.required, Validators.minLength(10)]],
+      author: ['', [Validators.required, Validators.minLength(2)]],
+      image: [''],
       created_at: [new Date()],
       updated_at: [new Date()],
     });
   }
 
+  onImageSelect(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImage = e.target.result; // This will be a base64 string
+        this.articleForm.patchValue({
+          image: e.target.result
+        });
+        this.selectedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+
+  // Add these new methods to your component:
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.selectedImage = e.target.result;
+          this.articleForm.patchValue({
+            image: e.target.result
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+
   onSubmit() {
-    if(this.articleForm.invalid){
-      alert('Pleae check form details');
+    if (this.articleForm.invalid) {
+      alert('Please check form details');
       return;
     }
-    this.articleService.addArticles(this.articleForm.value).subscribe((data) => {
+
+    const articleData = {
+      ...this.articleForm.value,
+      image: this.selectedImage // This will save the base64 string in JSON
+    };
+
+    this.articleService.addArticles(articleData).subscribe((data) => {
       alert('article saved successfully');
       this.articleForm.reset();
       this.router.navigate(['/list']);
-    })
+    });
   }
 }
