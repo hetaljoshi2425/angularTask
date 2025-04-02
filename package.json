@@ -22,8 +22,6 @@
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.5",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
-    "@nguniversal/builders": "^16.2.0",
-    "@nguniversal/express-engine": "^7.1.1",
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/postcss": "^4.1.0",
     "bootstrap": "^5.3.3",
