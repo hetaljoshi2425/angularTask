@@ -1,23 +1,32 @@
-<div class="container mt-4">
-    <div class="card">
+<div class="container mt-4" >
+    <div class="card article-details border-0">
         <div class="card-body">
-            <h2 class="card-title mb-4">Article Details</h2>
+            <!-- <h2 class="card-title mb-4">Article Details</h2> -->
             <div class="row">
                 <div class="col-md-12">
-                    <h5 class="text-muted">Title</h5>
-                    <p class="lead mb-3">{{articleData.title}}</p>
+                    <div class="text-center mb-4">
+                        <h2 class="">Article Title</h2>
+                        <p class="lead mb-3">{{articleData?.title}}</p>
+                    </div>
+                    <div class="my-4 article-img text-center">
+                        <img src="{{articleData?.image}}" alt="article" class="rounded">
+                    </div>
                     
-                    <h5 class="text-muted">Content</h5>
-                    <p class="mb-3">{{articleData.content}}</p>
-                    
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h5 class="text-muted">Created At</h5>
-                            <p class="mb-3">{{articleData.created_at}}</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <h5 class="text-muted">Updated At</h5>
-                            <p class="mb-3">{{articleData.updated_at}}</p>
+                    <div class="article-info">
+                        <h5 class="content-title">Content</h5>
+                        <p class="mb-3 content-p">{{articleData?.content}}</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-sm-6 mb-sm-0 mb-3">
+                                <h5 class="create-title">Created At</h5>
+                                <p class="mb-0 create-date">{{articleData?.created_at}}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-end">
+                                    <h5 class="create-title">Updated At</h5>
+                                    <p class="mb-0 create-date">{{articleData?.updated_at}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

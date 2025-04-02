@@ -40,6 +40,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
               next: (data) => {
                 this.loading = false;
                 this.articleData = data;
+                console.log(this.articleData);
+                
               },
               error: (err) => {
                 this.loading = false;

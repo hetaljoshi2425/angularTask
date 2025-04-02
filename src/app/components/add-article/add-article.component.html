@@ -1,21 +1,23 @@
 <div class="container">
-    <h2>Add Article</h2>
-
-    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input class="form-control"
-                type="text"
-                formControlName="title"
-                [ngClass]="{'is-invalid': articleForm.get('title')?.errors && articleForm.get('title')?.touched && (articleForm.get('title')?.invalid || articleForm.get('title')?.dirty) }"            />
-            <div *ngIf="articleForm.get('title')?.touched" class="ml-2 invalid-feedback">
-                <div *ngIf="articleForm.get('title')?.hasError('required')">Title Is required</div>
-                <div *ngIf="articleForm.get('title')?.hasError('minlength')">Minimum 3 characters required</div>
+    <div class="article-section">
+        <h2 class="article-title mb-4 text-center">Add Article</h2>
+    
+        <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <label for="title" class="mb-2" >Title</label>
+                <input class="form-control"
+                    type="text"
+                    formControlName="title"
+                    [ngClass]="{'is-invalid': articleForm.get('title')?.errors && articleForm.get('title')?.touched && (articleForm.get('title')?.invalid || articleForm.get('title')?.dirty) }"            />
+                <div *ngIf="articleForm.get('title')?.touched" class="ml-2 invalid-feedback">
+                    <div *ngIf="articleForm.get('title')?.hasError('required')">Title Is required</div>
+                    <div *ngIf="articleForm.get('title')?.hasError('minlength')">Minimum 3 characters required</div>
+                </div>
             </div>
-        </div>
+        
 
-        <div class="form-group">
-            <label for="author">Author Name</label>
+        <div class="form-group mb-3">
+            <label for="author" class="mb-2">Author Name</label>
             <input class="form-control"
                 type="text"
                 formControlName="author"
@@ -26,7 +28,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="image">Article Image</label>
             <div class="custom-file-upload">
                 <input
@@ -53,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            <label for="content">Content</label>
+            <label for="content" class="mb-2">Content</label>
             <textarea 
                 class="form-control"
                 type="text"
@@ -66,6 +68,8 @@
             </div>
         </div>
 
-        <button type="submit" class="mt-4 btn btn-primary">Save</button>
+        <div class="text-center">
+            <button type="submit" class="mt-4 btn save-btn">Save</button>
+        </div>
     </form>
 </div>
