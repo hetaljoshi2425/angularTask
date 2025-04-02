@@ -1,27 +1,31 @@
 <div class="container mt-4">
+    @if (article$ | async; as articleData) {
     <div class="card">
         <div class="card-body">
             <h2 class="card-title mb-4">Article Details</h2>
             <div class="row">
                 <div class="col-md-12">
                     <h5 class="text-muted">Title</h5>
-                    <p class="lead mb-3">{{articleData.title}}</p>
-                    
+                    <p class="lead mb-3">{{articleData.data?.title}}</p>
+
                     <h5 class="text-muted">Content</h5>
-                    <p class="mb-3">{{articleData.content}}</p>
-                    
+                    <p class="mb-3">{{articleData.data?.content}}</p>
+
                     <div class="row">
                         <div class="col-sm-6">
                             <h5 class="text-muted">Created At</h5>
-                            <p class="mb-3">{{articleData.created_at}}</p>
+                            <p class="mb-3">{{articleData.data?.created_at | date: 'yyyy-MM-dd'}}</p>
                         </div>
                         <div class="col-sm-6">
                             <h5 class="text-muted">Updated At</h5>
-                            <p class="mb-3">{{articleData.updated_at}}</p>
+                            <p class="mb-3">{{articleData.data?.updated_at | date: 'yyyy-MM-dd'}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    }
 </div>
+
+

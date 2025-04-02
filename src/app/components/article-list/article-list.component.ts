@@ -41,7 +41,7 @@ export class ArticleListComponent implements OnInit {
   );
   }
 
-  routeToDetails(article: any){
+  routeToDetails(article: Articles){
     this.router.navigate(['/article/'+article.id, article])
   }
 

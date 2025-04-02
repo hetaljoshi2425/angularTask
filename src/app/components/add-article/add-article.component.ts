@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ArticleService } from '../../services/article.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { catchError, EMPTY, Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-add-article',
@@ -14,6 +15,7 @@ export class AddArticleComponent implements OnInit {
 
   articleForm!: FormGroup;
   selectedImage: File | null = null;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -86,9 +88,19 @@ export class AddArticleComponent implements OnInit {
       image: this.selectedImage // This will save the base64 string in JSON
     };
 
-    this.articleService.addArticles(articleData).subscribe((data) => {
-      alert('article saved successfully');
-      this.articleForm.reset();
+
+    // In your onSubmit method:
+    this.articleService.addArticles(articleData).pipe(
+      tap(() => {
+        alert('article saved successfully');
+        this.articleForm.reset();
+      }),
+      takeUntil(this.destroy$),
+      catchError(error => {
+        alert('Error saving article');
+        return EMPTY;
+      })
+    ).subscribe(() => {
       this.router.navigate(['/list']);
     });
   }

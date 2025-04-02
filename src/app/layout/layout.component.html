@@ -1,26 +1,45 @@
-<div class="layout ">
-    <nav class="p-3 navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="layout d-flex flex-column min-vh-100">
+  <!-- Header/Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">Articles</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="javascript:void(0);">List</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div class="container py-4">
-
-          <router-outlet />
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:void(0);">List</a>
+          </li>
+          <!-- Add more nav items here -->
+        </ul>
       </div>
-      <footer class="footer mt-auto py-3 ">
-        <div class="container">
-            <p class="float-right"><a href="#">Back to top</a></p>
-            <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-        </div>
-      </footer>
     </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow-1">
+    <div class="container py-4">
+      <router-outlet />
+      <app-server-logger></app-server-logger>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer bg-dark text-light py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-0">&copy; 2023 Company, Inc. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="text-light me-3">Privacy</a>
+          <a href="#" class="text-light me-3">Terms</a>
+          <a href="#" class="text-light">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

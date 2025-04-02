@@ -14,13 +14,6 @@ export class ArticleListCardComponent {
  @Input() article!: Articles;
 
  constructor(public router: Router){
-  console.log(this.article);
   
- }
-
- gotoView(id: string){
-  console.log(id);
-  
-  // this.router.navigate([`/view/${id}`])
  }
 }
